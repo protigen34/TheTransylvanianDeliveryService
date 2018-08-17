@@ -1,49 +1,18 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing products</h1>
 
-<table>
-  <thread>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Image url</th>
-      <th>Color</th>
-      <th colspan="3"></th>
-    </tr>
-  </thread>
-
-  <div class="container-fluid">
+<div class="container-fluid">
   <div class="row">
     <% @products.each do |product| %>
-      <div class="col-sm">
-        <%= image_tag(product.image_url, class: "img-fluid") %>
-        <a href="#"><h1>Bike 1</h1></a>
-        <p>Pretty cool bike</p>
-        <strong>$ 42</strong>
-      </div><!-- /col -->
+      <%= product.name %>
+        <%= product.description %>
+        <%= image_tag(product.image_url, class: "img-fluid") if product.image_url.present? %>
+        <%= product.color %>
+        <%= product.price %>
+        <%= link_to 'Show', product %>
+        <%= link_to 'Edit', edit_product_path(product) %>
+        <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
   </div>
 </div>
-    <div class="col-sm">
-      <a href="#"><h1>Bike 2</h1></a>
-      <p>Really cool bike</p>
-      <strong>$ 84</strong>
-    </div><!-- /col -->
-    <div class="col-sm">
-      <a href="#"><h1>Bike 3</h1></a>
-      <p>Best bike ever</p>
-      <strong>$ 999</strong>
-    </div><!-- /col -->
-    <div class="col-sm">
-      <a href="#"><h1>Bike 4</h1></a>
-      <p>This bike is ok</p>
-      <strong>$ 1</strong>
-    </div><!-- /col -->
-  </div>
-</div>
-</table>
-
-<br>
 
 <%= link_to 'New Product', new_product_path %>
