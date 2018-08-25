@@ -1,38 +1,8 @@
-<div class="row">
-  <% @orders.each do |order| %>
-    <div class="col-sm">
-      <h1>
-        Order # <%= order.id %>:
-        <%= link_to order.product.name, order %>
-      </h1>
-      <p><%= order.product.description %></p>
-      <strong>$ <%= order.product.price %></strong>
-    </div><!-- /col -->
-  <% end %>
-</div>
-
-<div class="row">
-  <% @orders.each do |order| %>
-    <div class="col-sm">
-      <h1>
-        Order # <%= order.id %>:
-        <%= link_to order.product.name, order %>
-      </h1>
-      <p><%= order.product.description %></p>
-      <strong>$ <%= order.product.price %></strong>
-    </div><!-- /col -->
-  <% end %>
-</div>
-
-<div class="row">
-  <% @orders.each do |order| %>
-    <div class="col-sm">
-      <h1>
-        Order # <%= order.id %>:
-        <%= link_to order.product.name, order %>
-      </h1>
-      <p><%= order.product.description %></p>
-      <strong>$ <%= order.product.price %></strong>
-    </div><!-- /col -->
-  <% end %>
-</div>
+<%= product.name %>
+<%= product.description %>
+<%= image_tag(product.image_url, class: "img-fluid") if product.image_url.present? %>
+<%= product.color %>
+<%= product.price %>
+<%= link_to 'Show', product %>
+<%= link_to 'Edit', edit_product_path(product) %>
+<%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
