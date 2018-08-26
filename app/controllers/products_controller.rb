@@ -4,8 +4,11 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
+  if params[:q]
+    search_term = params[:q]
+    @products = Product.search(search_term)
+  else
     @products = Product.all
-    @test_variable = 42
   end
 
   # GET /products/1
@@ -62,7 +65,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  private
+  print
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
@@ -72,4 +75,5 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:name, :description, :image_url, :color, :price)
     end
+  end
 end
