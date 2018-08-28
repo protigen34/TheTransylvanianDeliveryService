@@ -7,6 +7,14 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+class Order < ActiveRecord::Base
+    belongs_to :product
+    belongs_to :user
+end
+class User < ActiveRecord::Base
+    has_many :orders
+end
+
   def new
   end
 
