@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @orders = Order.includes(:product).all
   end
@@ -7,20 +9,13 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
-class Order < ActiveRecord::Base
-    belongs_to :product
-    belongs_to :user
-end
-class User < ActiveRecord::Base
-    has_many :orders
-end
-
   def new
   end
 
   def create
   end
 
-  def destroy
+  def Destroy
   end
+
 end
