@@ -4,22 +4,24 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-  if params[:q]
-    search_term = params[:q]
-    @products = Product.search(search_term)
-  else
-    @products = Product.all
+    if params[:q]
+      search_term = params[:q]
+      @products = Product.search(search_term)
+    else
+      @products = Product.all
+    end
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
-    @comments = @product.comments.order("created_at DESC")
+    @comments = Comment.all
   end
 
   # GET /products/new
   def new
     @product = Product.new
+   # redirect_to "/simple_pages/landing_page"
   end
 
   # GET /products/1/edit
@@ -66,15 +68,14 @@ class ProductsController < ApplicationController
     end
   end
 
-  print
+  private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def product_params
-      params.require(:product).permit(:name, :description, :image_url, :color, :price)
-    end
+  def product_params
+    params.require(:product).permit(:name, :description, :image_url, :color, :price)
   end
 end
