@@ -42,6 +42,14 @@
               <%= link_to('Login', new_user_session_path) %>
              <% end %>
            </li>
+           <li>
+            <%= form_with(url: products_path, method: 'get', local: true) do |form| %>
+            <%= form.text_field :q, id: 'q', value: params[:q], class: "form-control", placeholder: "What can I find for you?" %>
+          </li>
+          <li>
+            <%= form.submit 'Search', class: 'btn btn-success'%>
+            <% end %>
+          </li>
          </ul>
        </div>
      </div>
