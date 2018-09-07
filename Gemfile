@@ -77,3 +77,5 @@ gem 'cancancan', '~> 1.10'
 gem 'rails-controller-testing'
 
 gem "factory_bot_rails", "~> 4.0"
+
+gem 'stripe'
