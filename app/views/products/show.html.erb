@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<section class="container-fluid">
+  <div class="row" data-product-id="<%= @product.id %>">
+    <% cache @product do %>
 
 <p>
   <strong>Name:</strong>
