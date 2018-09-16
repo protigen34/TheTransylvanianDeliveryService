@@ -83,3 +83,5 @@ gem 'stripe'
 gem "brakeman"
 
 gem 'redis-rails'
+
+gem 'will_paginate', '~> 3.1.0'

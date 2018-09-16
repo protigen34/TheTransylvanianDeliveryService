@@ -1,6 +1,5 @@
 <section class="container-fluid">
   <div class="row" data-product-id="<%= @product.id %>">
-    <% cache @product do %>
 
 <p>
   <strong>Name:</strong>
@@ -14,7 +13,7 @@
 
 <p>
   <strong>Image url:</strong>
-  <%= image_tag(@product.image_url, class: "img-fluid") if @product.image_url.present? %>
+  <%= image_tag(@product.image_url, class: "img-fluid", class: "img-zoom") if @product.image_url.present? %>
 </p>
 
 <p>
@@ -41,3 +40,5 @@
 <a href=”/products/3>Show Product</a>
 <%= render 'new_comment' %>
 <%= render 'comments' %>
+
+<%= will_paginate @comments %>
