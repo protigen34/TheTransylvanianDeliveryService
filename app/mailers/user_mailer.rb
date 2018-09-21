@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
   @message = message
     mail(from: email,
          to: 'somepleb271@yahoo.com',
-         subject: "A new contact form message from CJ")
+         subject: "A new contact form message from #{name}")
   end
   
   def welcome(user)
