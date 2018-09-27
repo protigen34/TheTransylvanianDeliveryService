@@ -16,6 +16,8 @@ describe UsersController, type: :controller do
   end
   
   context 'when a user is logged in' do
+    let(:user2) { FactoryBot.create(:user) }
+    
     before do
       sign_in @user
     end
@@ -26,7 +28,7 @@ describe UsersController, type: :controller do
     end
 
     it 'cannot access another user show page' do
-      get :show, params: {id: @user2.id}
+      get :show, params: {id: user2.id}
       expect(response).to have_http_status(302)
       expect(response).to redirect_to(root_path)
     end
@@ -34,9 +36,8 @@ describe UsersController, type: :controller do
 
      context 'when a user is not logged in' do
        it 'redirects to login' do
-         get :show, params: { id: user.id }
-         expect(response).to redirect_to(new_user_session_path)
+         get :show, params: { id: @user.id }
+         expect(response).to redirect_to(root_path)
        end
      end
   end
-
