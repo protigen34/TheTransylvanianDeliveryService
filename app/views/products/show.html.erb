@@ -27,10 +27,16 @@
 </p>
 
 <p>
+  <strong>Views:</strong>
+  <%= @product.views %>
+</p>
+
+<p>
   <% if user_signed_in? %>
     <%= form_with(url: payments_create_path) do |form| %>
       <%= hidden_field_tag(:product_id, @product.id) %>
       <%= render partial: "shared/stripe_checkout_button" %>
+    <% end %>
   <% end %>
 </p>
 
