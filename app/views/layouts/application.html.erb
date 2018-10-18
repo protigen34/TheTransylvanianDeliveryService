@@ -17,37 +17,8 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
 </head>
-
-       <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-      <i class="fas fa-bicycle"></i>&nbsp; <%= link_to "BikeBerlin", root_path, :class => "navbar-brand" %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto text-uppercase">
-          <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "<i class='fas fa-sign-out-alt' style='text-decoration: none'></i>".html_safe, destroy_user_session_path, method: :delete, id: "item1", title: "Log out", 'data-placement': "left", class: "nav-link" %>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to "<i class='fas fa-sign-in-alt' style='text-decoration: none'></i>".html_safe, new_user_session_path, id: "item1", title: "Log in", 'data-placement': "left", class: "nav-link" %>
-            </li>
-          <% end %>
-          <li class="nav-item"> <%= link_to "Home", root_path, :class => "nav-link" %> </li>
-          <li class="nav-item"> <%= link_to "About", about_path, :class => "nav-link" %> </li>
-          <li class="nav-item"> <%= link_to "Contact", simple_pages_contact_path, :class => "nav-link" %> </li>
-          <li class="nav-item"> <%= link_to "Products", products_path, :class => "nav-link" %> </li>
-        </ul>
-        <%= form_with(url: products_path, method: 'get', local: true, class: "form-inline mt-2 mt-md-0" ) do |form| %>
-        <%= form.text_field :q, id: 'q', value: params[:q], class:"form-control mr-sm-2", placeholder: "Search" %>
-        <%= form.submit 'Search', class: "btn btn-outline-success my-2 my-sm-0" %>
-        <% end %>
-      </div>
-    </nav>
-      
-      <%= yield %>
-      
+   <nav>
+  <ul>
 @@ -22,5 +27,4 @@
 <footer>
   &copy; 2018 Bike Berlin
