@@ -86,7 +86,7 @@
         <h3>Featured Products</h3>
       </div>
         <% cache 'featured-bikes', expires_in: Time.now.beginning_of_hour + 1.hour do %>
-          <%= render @featured_products%>        
+          <%= render @featured_products %>        
         <% end %>
     </div>
   </div>

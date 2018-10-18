@@ -7,6 +7,7 @@ class SimplePagesController < ApplicationController
   
   def landing_page
     @products = Product.limit(5)
+     @featured_products = Product.where(featured: true)
   end
   
   def thank_you
