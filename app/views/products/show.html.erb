@@ -1,73 +1,64 @@
-<%= render 'shared/decoration_string' %>
-<section class="show-product">
-  <div class="row" data-product-id="<%= @product.id %>">
-    <div class="col-12 col-sm-6 product-image">
-      <%= product_zoom_image_tag @product %>
-    </div>
-    <div class="col-12 col-sm-6 order-sm-first product-info">
-      <div class="product-info-main">
-        <% cache @product do %>
-          <h3><%= @product.name %></h3>
-          <hr />
-          <p><%= @product.description %></p>
-          <p>Colour: <%= @product.colour %></p>
-        <% end %>
-        <div>Average Rating: &nbsp;
-          <div class="rated" id="average-rating" data-score="<%= @product.average_rating %>"></div>
-        </div>
-      </div>
-      <div class="product-info-bottom">
+<section class="content">
+  <div class="container">
+    <div class="row" data-product-id="<%= @product.id %>">
 
-        <div class="price">
-          <%= number_to_currency(@product.price_in_euro) %>
-        </div>
-        <hr />
-        <p>
-          <% if user_signed_in? %>
-            <%= form_with(url: payments_create_path) do |form| %>
-              <%= hidden_field_tag(:product_id, @product.id) %>
-              <%= render partial: "shared/stripe_checkout_button", locals: {product: @product}%>
-            <% end %>
-          <% else %>
-            Please <%= link_to 'sign in', new_user_session_path, class: "edit-link" %>
-            or <%= link_to 'sign up', new_user_registration_path, class: "edit-link" %> to buy!
-          <% end %>
-        </p>
-        <p>
-          <%= link_to 'Back', products_path, class: "edit-link" %>
-          <% if admin_signed_in? %>
-            &bull;
-            <%= link_to 'Edit', edit_product_path(@product), class: "edit-link"%> &bull;
-            <%= link_to 'Destroy', @product, class: "edit-link",
-                           method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
-          <br /><small><i><%= pluralize(@view_count, "view") %></i></small>
-        </p>
+      <%= render 'product', product: @product %>
+
+      <div class="product-col col-sm-12 col-md-4 col-lg-4">
+        <% if @comments.exists? %>
+          <h4>Average Rating:</h4>
+          <div id="average-rating" class="rated" data-score="<%= @product.average_rating %>"></div>
+          <p></p>
+          
+          <h4>Best review</h4>
+          <div id="highest-rating" class="rated" data-score="<%= @product.highest_rating_comment.rating %>"></div>        
+          <p>
+            <b id="highest-rating-user"><%= @product.highest_rating_comment.user.first_name %> says:</b>
+            <span id="highest-rating-comment"><%= @product.highest_rating_comment.body %></span>
+          </p>
+          
+          <h4>Worst review</h4>
+          <div id="lowest-rating" class="rated" data-score="<%= @product.lowest_rating_comment.rating %>"></div>
+          <p> 
+            <b id="lowest-rating-user"><%= @product.lowest_rating_comment.user.first_name %> says:</b>
+            <span id="lowest-rating-comment"><%= @product.lowest_rating_comment.body %></span>
+          </p>
+        <%end%>
       </div>
     </div>
-  </div><!-- end row -->
-  <div class="comments">
-    <div class="alert alert-info" style="display:none" role="alert">A new comment was posted!</div>
-    <%= render "new_comment" %>
-    <div id="comments">
-      <script>
-        $.get("<%= product_comments_path(@product) %>", { product_id: <%= @product.id %>, page: 1 });
-      </script>
+    
+    <div class="row">
+      <div class="product-col col-sm-12 col-md-2 col-lg-2">
+        <%= link_to 'Back', products_path, class: "btn btn-outline-success my-2 my-sm-0" %>
+        <% if signed_in? && current_user.admin? %>
+            <%= link_to 'Edit', edit_product_path(@product), class: "btn btn-outline-success my-2 my-sm-0" %>
+          <% end %>
+      </div>
+      <div class="product-col col-sm-12 col-md-2 col-lg-2">
+        <%= form_with(url: '/payments/create') do |form| %>
+          <%= render partial: "shared/stripe_checkout_button" %>
+          <%= hidden_field_tag(:product_id, @product.id) %>
+        <% end %>
+      </div>
     </div>
   </div>
-  <% if admin_signed_in? %>
-    <hr>
-    <h4>Orders for this product</h4>
-    <p>
-      <% @product.orders.each do |order| %>
-        <strong>Order ID: </strong><%= order.id %> &mdash;
-        <strong>User: </strong><%= order.user.email %> &mdash;
-        <i>ordered <%= "#{time_ago_in_words(order.created_at)} ago" %></i>
-        <%= render partial: "shared/destroy_button", locals:{object: order} %>
-        <br />
-      <% end %>
-    </p>
-  <% end %>
-
 </section>
-<%= render 'shared/decoration_string' %>
+
+<!-- Comments -->
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="product-col col-sm-12 col-md-4 col-lg-4">
+        <% if @comments.exists? %>
+          <div class="alert alert-info" style="display:none" role="alert">A new comment was posted!</div>
+          <%= render 'comments' %>
+          <div class="flickr_pagination">
+            <%= will_paginate @comments %>
+          </div>
+        <% end %>
+          <%= render 'new_comment' %>
+      </div>
+    </div>
+  </div>
+</section>
