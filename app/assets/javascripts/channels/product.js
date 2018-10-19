@@ -1,9 +1,9 @@
-App.product = App.cable.subscriptions.create "ProductChannel",
-  connected: ->
-    # Called when the subscription is ready for use on the server
+App.product = App.cable.subscriptions.create("ProductChannel",
+  {connected: function() {},
+    // Called when the subscription is ready for use on the server
 
-  disconnected: ->
-    # Called when the subscription has been terminated by the server
+  disconnected: function() {},
+    // Called when the subscription has been terminated by the server
 
   received: function(data) {
   // Called when there's incoming data on the websocket for this channel
@@ -18,6 +18,7 @@ listen_to_comments: function() {
     product_id: $("[data-product-id]").data("product-id")
   });
 }
+});
 
 $(document).on('turbolinks:load', function() {
   App.product.listen_to_comments();
