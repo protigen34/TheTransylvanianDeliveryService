@@ -18,7 +18,7 @@
       <div class="item active">
         <div class="overlay">&nbsp;</div>
         <div class="custom-carousel-image" alt="First slide">
-          <%= image_tag 'http://www.freeimageslive.com/galleries/sports/sportsgames/pics/cricket_ball.jpg', size: '512' %>
+          <%= image_tag 'http://www.freeimageslive.com/galleries/sports/sportsgames/pics/cricket_ball.jpg', style: 'width: 100%; margin: auto;' %>
         </div>
         <div class="carousel-caption d-md-block">
           <h1>Welcome to Bike Berlin</h1>
@@ -32,7 +32,7 @@
         <div class="item">
           <div class="overlay">&nbsp;</div>
           <div class="custom-carousel-image">
-            <%= image_tag product.image_url %>>
+            <%= image_tag product.image_url, style: 'width: 100%; margin: auto;' %>
           </div>
           <!-- Carousel captions -->
           <div class="carousel-caption d-md-block">
@@ -43,11 +43,11 @@
         
       <% end %> 
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <a class="left carousel-control" href="#carouselExampleIndicators" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <a class="right carousel-control" href="#carouselExampleIndicators" role="button" data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
