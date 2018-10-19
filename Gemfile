@@ -83,3 +83,5 @@ gem 'dalli'
 gem 'will_paginate', '~> 3.1.0'
 
 gem 'rails_bootstrap_navbar'
+
+gem 'activeadmin'
