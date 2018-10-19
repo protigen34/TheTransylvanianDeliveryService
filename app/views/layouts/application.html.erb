@@ -1,83 +1,79 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BikesBerlin | Ride with Style</title>
+    <title>Nameofapp</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-    <!-- Font Awesome CDN-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
-    <div class="page-wrap">
-      
-      <% if notice %>
-      <section class="content custom-error-message alert alert-primary">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-12">
-              <p id="notice"><%= notice %></p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <% end %>
 
-      <% if alert %>
-       <section class="content custom-error-message alert alert-danger">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-12">
-              <p id="alert"><%= alert %></p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <% end %>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-      <i class="fas fa-bicycle"></i>&nbsp; <%= link_to "BikeBerlin", root_path, :class => "navbar-brand" %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto text-uppercase">
-          <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "<i class='fas fa-sign-out-alt' style='text-decoration: none'></i>".html_safe, destroy_user_session_path, method: :delete, id: "item1", title: "Log out", 'data-placement': "left", class: "nav-link" %>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to "<i class='fas fa-sign-in-alt' style='text-decoration: none'></i>".html_safe, new_user_session_path, id: "item1", title: "Log in", 'data-placement': "left", class: "nav-link" %>
-            </li>
-          <% end %>
-          <li class="nav-item"> <%= link_to "Home", root_path, :class => "nav-link" %> </li>
-          <li class="nav-item"> <%= link_to "About", about_path, :class => "nav-link" %> </li>
-          <li class="nav-item"> <%= link_to "Contact", simple_pages_contact_path, :class => "nav-link" %> </li>
-          <li class="nav-item"> <%= link_to "Products", products_path, :class => "nav-link" %> </li>
-        </ul>
-        <%= form_with(url: products_path, method: 'get', local: true, class: "form-inline mt-2 mt-md-0" ) do |form| %>
-        <%= form.text_field :q, id: 'q', value: params[:q], class:"form-control mr-sm-2", placeholder: "Search" %>
-        <%= form.submit 'Search', class: "btn btn-outline-success my-2 my-sm-0" %>
-        <% end %>
-      </div>
-    </nav>
-      
-      <%= yield %>
+  <body data-spy="scroll" data-target=".navbar">
+  <div id="wrap">
+    <nav class="navbar navigation-wrapper navbar-inverse" role="navigation">
+     <div class="container-fluid container-nav-bar">
+       <div class="navbar-header">
+         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu" aria-expanded="false">
+           <span class="sr-only">Toggle navigation</span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+         </button>
+       </div>
+       <div class="navbar-collapse collapse">
+         <ul class="navbar-left">
+           <li><%= link_to "Home", root_path, class:"nav-link" %></li>
+           <li><%= link_to "Who", simple_pages_about_path, class:"nav-link" %></li>
+           <li><%= link_to "Contact", simple_pages_contact_path, class:"nav-link" %></li>
+           <li><%= link_to "Products", products_path, class:"nav-link" %></li>
+           <li class="login">
+             <% if user_signed_in? %>
+              <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+             <% else %>
+              <%= link_to('Login', new_user_session_path) %>
+             <% end %>
+           </li>
+           <li>
+            <%= form_with(url: products_path, method: 'get', local: true) do |form| %>
+            <%= form.text_field :q, id: 'q', value: params[:q], class: "form-control", placeholder: "What can I find for you?" %>
+          </li>
+          <li>
+            <%= form.submit 'Search', class: 'btn btn-success'%>
+            <% end %>
+          </li>
+         </ul>
+       </div>
+     </div>
+   </nav>
 
-    </div><!-- end page-wrap -->
+   <section class="container-fluid">
 
-    <footer class="site-footer text-right">
-      <p>&copy; 2018 Bike Berlin</p>
-    </footer>
-    
+     <!-- Flash Notice Tags -->
+     <% if notice %>
+       <p id="notice" class="alert alert-success" role="alert"><%= notice %></p>
+     <% end %>
+
+     <% if alert %>
+       <p id="alert" class="alert alert-danger" role="alert"><%= alert %></p>
+     <% end %>
+
+  </section>
+
+  <%= yield %>
+  <div id="push"></div>
+</div>
+
+  <footer class="container-fluid copy-right" id="footer">
+    &copy; your name
+  </footer>
+
   </body>
 </html>
