@@ -1,4 +1,4 @@
-<section id="slides">
+<div id="slides">
     
   <!-- Carousel -->
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -12,12 +12,13 @@
     </ol>
 
     <!-- Carousel items -->
-    <div class="carousel-inner">
+    <div class="carousel-inner" role="listbox">
       
       <!-- Static item -->
-      <div class="carousel-item active">
-        <div class="overlay"></div>
-        <div class="custom-carousel-image" style="background-image: url('/assets/blue_bike_cropped.jpg'); alt="First slide">
+      <div class="item active">
+        <div class="overlay">&nbsp;</div>
+        <div class="custom-carousel-image" alt="First slide">
+          <%= image_tag 'http://www.freeimageslive.com/galleries/sports/sportsgames/pics/cricket_ball.jpg', size: '512' %>
         </div>
         <div class="carousel-caption d-md-block">
           <h1>Welcome to Bike Berlin</h1>
@@ -28,9 +29,10 @@
       <!-- Dynamic items -->
       <!-- @products is limited to the first two items in the database (done in simple_pages_controller) -->
       <% @products.each do |product| %>
-        <div class="carousel-item">   
-          <div class="overlay"></div>
-          <div class="custom-carousel-image" style="background-image: url('<%= product.image_url %>');">
+        <div class="item">
+          <div class="overlay">&nbsp;</div>
+          <div class="custom-carousel-image">
+            <%= image_tag product.image_url %>>
           </div>
           <!-- Carousel captions -->
           <div class="carousel-caption d-md-block">
@@ -50,7 +52,7 @@
       <span class="sr-only">Next</span>
     </a>
   </div><!-- end carousel -->
-</section>
+</div>
 <!-- Three column grid -->
 <section id="three-column-grid" class="content-home">
   <div class="container">
@@ -76,7 +78,8 @@
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum corporis assumenda libero repellendus, necessitatibus praesentium nulla! Quis quod maxime minus neque dolore ab nulla, numquam. Adipisci esse dolores soluta perferendis.
         </p>
       </div>
-    </div><!-- end three column grid -->
+    </div>
+  </div><!-- end three column grid -->
 </section>
 <!-- Latest arrivals / changed to featured product -->
 <section id="arrivals" class="content-home">
