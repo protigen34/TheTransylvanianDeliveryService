@@ -17,7 +17,7 @@ App.product = App.cable.subscriptions.create "ProductChannel",
       product_id: $("[data-product-id]").data("product-id")
     });
   
-
-
 $(document).on 'turbolinks:load', ->
-  App.product.listen_to_comments();
+  App.product.listen_to_comments()
+  return
+  
