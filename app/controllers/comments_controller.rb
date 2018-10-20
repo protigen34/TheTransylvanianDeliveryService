@@ -13,6 +13,7 @@ class CommentsController < ApplicationController
         format.json { render :show, status: :created, location: @product }
         format.js
       else
+        puts "@comment.errors: #{@comment.errors.inspect}"
         format.html { redirect_to @product, alert: 'Review was not saved successfully.' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
